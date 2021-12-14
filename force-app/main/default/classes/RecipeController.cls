@@ -1,3 +1,10 @@
+/**
+ * @description       : 
+ * @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+ * @group             : 
+ * @last modified on  : 12-14-2021
+ * @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+**/
 public inherited sharing class RecipeController {
     @AuraEnabled(Cacheable=true)
     public static Recipe__c[] getAllRecipes() {
@@ -46,4 +53,20 @@ public inherited sharing class RecipeController {
             LIMIT 50
         ];
     }
-}
+    @AuraEnabled
+    public static List < Ingredient__c > generateGroceryList(ID recipeId){
+        //from the recipe id I get the list of ingredients
+        List < Ingredient__c > myingredientlist = SELECT[Id, Name, Measurement__c, Measurement_Type__c, Notes__c from Ingredient__c WHERE Recipe__c = :recipeId];
+        //once I get the list of ingredients I create a list of groceries with the ingredients needed
+        List<String> mygrocerylist = new List<string>();
+        for(Ingredient__c i:myingredientlist){
+            mygrocerylist.add(i.Name,i.Measurement__c, i.Measurement_Type__c,i.Notes__c);
+    
+            system.debug('Grocery list: ' + mygrocerylist);
+            return GroceryList;
+        }
+        
+    
+    }
+    }
+    
