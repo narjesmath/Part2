@@ -1,0 +1,19 @@
+<!--
+  @description       : 
+  @author            : Narjes Mathlouthi
+  @group             : 
+  @last modified on  : 12-17-2021
+  @last modified by  : Narjes Mathlouthi
+-->
+<template>
+    <lightning-card  title="Groceries" icon-name="utility:cart">
+        <div if:true={ingredients}>
+            <lightning-datatable
+                key-field="Id"
+                data={ingredients}
+                hide-checkbox-column 
+                columns={columns}>
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+</template>
